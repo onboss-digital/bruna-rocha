@@ -3,6 +3,7 @@
 import { Youtube, Instagram, Music } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
+// Usaremos a tipografia do projeto padrão para o subtítulo (mesmo estilo de "Cantora Gospel")
 
 export default function Home() {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null)
@@ -12,23 +13,20 @@ export default function Home() {
     {
       id: 'youtube',
       name: 'YouTube',
-      icon: Youtube,
-      url: 'https://www.youtube.com',
-      glowColor: 'group-hover/youtube:shadow-red-500/20',
+      icon: '/youtube.png',
+      url: 'https://www.youtube.com/@brunarochaoficial',
     },
     {
       id: 'instagram',
       name: 'Instagram',
-      icon: Instagram,
-      url: 'https://www.instagram.com',
-      glowColor: 'group-hover/instagram:shadow-pink-500/20',
+      icon: '/instagram.png',
+      url: 'https://www.instagram.com/bruna_rocha_oficial',
     },
     {
       id: 'spotify',
       name: 'Spotify',
-      icon: Music,
-      url: 'https://www.spotify.com',
-      glowColor: 'group-hover/spotify:shadow-emerald-500/20',
+      icon: '/spotify.png',
+      url: 'https://open.spotify.com/intl-pt/artist/0YXWhZ8L0f3q5TiMaGU7qc?si=w_Psyt5RR6qCGn650G_sTQ',
     },
   ]
 
@@ -71,28 +69,51 @@ export default function Home() {
                     </div>
                   )}
                   <Image
-                    src="/images/e2-80-9cuma-20pequena-20parte-20registrada-20de-20um-20projeto-20lindo-20que-20nasceu-20no-20cora-o-20de-20deus.jpg"
+                    src="/bru.jpg"
                     alt="Bruna Rocha"
                     fill
                     className="object-cover"
                     priority
-                    onLoadingComplete={() => setImageLoaded(true)}
+                    onLoad={() => setImageLoaded(true)}
                   />
+                {/* Musical notes animation */}
+                <div className="notes-container pointer-events-none" aria-hidden>
+                  <span className="note n1">♪</span>
+                  <span className="note n2">♪</span>
+                  <span className="note n3">♪</span>
+                  <span className="note n4">♪</span>
+                  <span className="note n5">♪</span>
+                </div>
                 </div>
               </div>
             </div>
 
             {/* Header Text - Refined Typography Hierarchy */}
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">
-                Bruna Rocha
+              <h1 className="text-4xl font-bold text-white mb-2 tracking-tight flex items-center justify-center">
+                <span>Bruna Rocha</span>
+                <span className="ml-0 inline-flex items-center justify-center w-10 h-10 overflow-visible" style={{ marginLeft: -8, transform: 'translateY(2px)' }}>
+                  <Image src="/Instagram-Verified.png" alt="Verified" width={40} height={40} style={{ objectFit: 'contain' }} />
+                </span>
               </h1>
               <p className="text-emerald-400/90 text-xs font-semibold uppercase tracking-widest mb-4 opacity-80">
                 Cantora Gospel
               </p>
-              <p className="text-gray-300/80 text-sm leading-relaxed">
-                Louvor e adoração para tocar o coração
+              <p className="text-emerald-400/90 text-xs font-semibold uppercase tracking-widest mb-4 opacity-80">
+                Acompanhe o Lançamento do novo Single em todas as plataformas digitais.
               </p>
+              {/* Capa do novo single (public/capa.*) */}
+              <div className="mt-6 flex justify-center">
+                <a
+                  href="https://www.youtube.com/@brunarochaoficial"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Abrir no YouTube"
+                  className="w-64 md:w-80 rounded-2xl overflow-hidden shadow-2xl transform-gpu transition-transform duration-700 hover:scale-105 animate-release block"
+                >
+                  <Image src="/capa-ao-caminho.jpg" alt="Capa do single" width={800} height={800} className="w-full h-auto object-cover" />
+                </a>
+              </div>
             </div>
 
             {/* Platform Buttons - Premium Interactions */}
@@ -108,22 +129,13 @@ export default function Home() {
                     rel="noopener noreferrer"
                     onMouseEnter={() => setHoveredButton(platform.id)}
                     onMouseLeave={() => setHoveredButton(null)}
-                    className={`group/${platform.id} w-full flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl
-                      bg-gradient-to-br from-white/8 to-white/5 
-                      border border-white/12 backdrop-blur-sm
-                      text-white font-medium text-sm
-                      transition-all duration-500 ease-out
-                      hover:border-white/25 hover:bg-white/15 hover:shadow-lg
-                      active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500/50
-                      ${isHovered ? 'shadow-xl' : 'shadow-md'}`}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl backdrop-blur-sm text-white font-medium text-sm transition-all duration-300 ${isHovered ? 'shadow-xl scale-101' : 'shadow-md'}`}
                   >
-                    <Icon
-                      className={`w-5 h-5 transition-all duration-500 ${
-                        isHovered ? 'scale-110' : 'scale-100'
-                      }`}
-                      strokeWidth={1.5}
-                    />
-                    <span>{platform.name}</span>
+                    <span className="flex items-center justify-center w-10 h-10 rounded-lg">
+                      <img src={platform.icon} alt={`${platform.name} logo`} className="w-full h-full object-contain" />
+                    </span>
+                    <span className="flex-1 text-left">{platform.name}</span>
+                    <span className="text-xs opacity-70">Abrir</span>
                   </a>
                 )
               })}
@@ -132,7 +144,7 @@ export default function Home() {
             {/* Spiritual Signature - Reduced Prominence */}
             <div className="mt-8 pt-6 border-t border-white/5 text-center">
               <p className="text-gray-500/70 text-xs leading-relaxed tracking-wide">
-                Um projeto nascido no coração de Deus
+               © Bruna Rocha — Todos os direitos reservados.
               </p>
             </div>
           </div>

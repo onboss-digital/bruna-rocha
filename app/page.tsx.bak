@@ -1,0 +1,40 @@
+'use client'
+
+import { Youtube, Instagram, Music } from 'lucide-react'
+import Image from 'next/image'
+import { useState } from 'react'
+
+export default function Home() {
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null)
+  const [imageLoaded, setImageLoaded] = useState(false)
+
+  const platforms = [
+    {
+      id: 'youtube',
+      name: 'YouTube',
+      icon: Youtube,
+      url: 'https://www.youtube.com',
+      glowColor: 'group-hover/youtube:shadow-red-500/20',
+    },
+    {
+      id: 'instagram',
+      name: 'Instagram',
+      icon: Instagram,
+      url: 'https://www.instagram.com',
+      glowColor: 'group-hover/instagram:shadow-pink-500/20',
+    },
+    {
+      id: 'spotify',
+      name: 'Spotify',
+      icon: Music,
+      url: 'https://www.spotify.com',
+      glowColor: 'group-hover/spotify:shadow-emerald-500/20',
+    },
+  ]
+
+  return (
+    <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden">
+      {/* Simplified backup of page content */}
+    </div>
+  )
+}
