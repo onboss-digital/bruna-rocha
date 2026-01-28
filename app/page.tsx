@@ -14,7 +14,7 @@ export default function Home() {
       id: 'youtube',
       name: 'YouTube',
       icon: '/youtube.png',
-      url: 'https://www.youtube.com/@brunarochaoficial',
+      url: 'https://www.youtube.com/watch?v=7rkXNW5LLcY',
     },
     {
       id: 'instagram',
