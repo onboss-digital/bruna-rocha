@@ -105,7 +105,7 @@ export default function Home() {
               {/* Capa do novo single (public/capa.*) */}
               <div className="mt-6 flex justify-center">
                 <a
-                  href="https://www.youtube.com/@brunarochaoficial"
+                  href="https://www.youtube.com/watch?v=7rkXNW5LLcY"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Abrir no YouTube"
